@@ -1,0 +1,31 @@
+{
+    "authors": [
+        {
+            "name": "Tom",
+            "email": "tomjharding@live.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpFp\\Either\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpFp\\Either\\Test\\": "test/"
+        }
+    },
+    "description": "An implementation of the Either monad in PHP.",
+    "homepage": "http://www.github.com/php-fp/php-fp-either",
+    "keywords": ["functional", "monad", "either"],
+    "license": "MIT",
+    "name": "php-fp/php-fp-either",
+    "scripts": {
+        "test": "vendor/bin/phpunit test"
+    },
+    "time": "2016-04-19",
+    "versions": "1.0.1",
+    "require-dev": {
+        "phpunit/phpunit": "^5.3"
+    }
+}
