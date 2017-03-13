@@ -1,6 +1,7 @@
-install: composer install
 language: php
 php:
   - 7.0
+  - 7.1
   - nightly
+install: composer install
 script: composer test
