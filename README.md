@@ -37,8 +37,8 @@ $prop = function ($k)
         return isset ($xs[$k])
             ? new Right($xs[$k])
             : new Left('No such key.');
-    }
-}
+    };
+};
 
 $id = function ($x)
 {
