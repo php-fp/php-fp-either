@@ -43,8 +43,8 @@ class BimapTest extends \PHPUnit_Framework_TestCase
             return $x;
         };
 
-        $a = new Right(2);
-        $b = new Left(2);
+        $a = Right::of(2);
+        $b = Left::of(2);
 
         $this->assertEquals(
             $a->bimap($addOne, $takeOne)

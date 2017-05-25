@@ -16,18 +16,18 @@ use PhpFp\Either\Constructor\{Left, Right};
 $login = function ($username, $password)
 {
     if ($username != 'foo') {
-        return new Left(
+        return Left::of(
             'Invalid username'
         );
     }
 
     if ($password != 'bar') {
-        return new Left(
+        return Left::of(
             'Incorrect password'
         );
     }
 
-    return new Right(['hello' => 'world']);
+    return Right::of(['hello' => 'world']);
 }
 
 $prop = function ($k)
@@ -35,8 +35,8 @@ $prop = function ($k)
     return function ($xs) use ($k)
     {
         return isset ($xs[$k])
-            ? new Right($xs[$k])
-            : new Left('No such key.');
+            ? Right::of($xs[$k])
+            : Left::of('No such key.');
     };
 };
 
@@ -76,7 +76,7 @@ use PhpFp\Either\Either;
 
 $id = function ($x) { return $x; };
 
-assert(Either::of('test')->either($id, $id) == 'test');
+assert(Right::of('test')->either($id, $id) == 'test');
 ```
 
 ### `try_catch :: (-> a) -> Either e a`
@@ -97,10 +97,6 @@ assert(try_catch($f)->either($id, $id) instanceof \Exception);
 assert(try_catch($g)->either($id, $id) === 'hello');
 ```
 
-### `__construct :: a -> Either e a`
-
-Standard constructor for the `Either` instances. `PhpFp\Either\Either` has an abstract constructor, so you will need to call either `PhpFp\Either\Constructor\Left::__construct` or the `Right` equivalent.
-
 ### `ap :: Either e (a -> b) | Either e a -> Either e b`
 
 Apply an Either-wrapped argument to an Either-wrapped function, where a `Left` function will behave as identity.
@@ -112,15 +108,15 @@ use PhpFp\Either\Constructor\{Left, Right};
 
 $id = function ($x) { return $x; };
 
-$addTwo = Either::of(
+$addTwo = Right::of(
     function ($x)
     {
         return $x + 2;
     }
 );
 
-$a = new Right(5);
-$b = new Left(4);
+$a = Right::of(5);
+$b = Left::of(4);
 
 assert($addTwo->ap($a)->either($id , $id) === 7);
 assert($addTwo->ap($b)->either($id, $id) === 4);
@@ -139,8 +135,8 @@ $addOne = function ($x) { return $x + 1; };
 $subOne = function ($x) { return $x - 1; };
 $id = function ($x) { return $x; };
 
-assert ((new Right(2))->bimap($addOne, $subOne)->either($id, $id) === 1);
-assert ((new Left(2))->bimap($addOne, $subOne)->either($id, $id) === 3);
+assert (Right::of(2)->bimap($addOne, $subOne)->either($id, $id) === 1);
+assert (Left::of(2)->bimap($addOne, $subOne)->either($id, $id) === 3);
 ```
 
 ### `chain :: Either e a | (a -> Either f b) -> Either f b`
@@ -152,15 +148,15 @@ The standard monadic binding function (Haskell's `>>=`). This is for mapping wit
 
 use PhpFp\Either\Constructor\{Left, Right};
 
-$f = function ($x)
+$double = function ($x)
 {
-    return Either::of($x * 2);
+    return Right::of($x * 2);
 }
 
 $id = function ($x) { return $x; };
 
-assert((new Right(8))->chain($f)->either($id, $id) === 16);
-assert((new Left(8))->chain($f)->either($id, $id) === 8);
+assert(Right::of(8)->chain($double)->either($id, $id) === 16);
+assert(Left::of(8)->chain($double)->either($id, $id) === 8);
 ```
 
 ### `map :: Either e a | (a -> b) -> Either e b`
@@ -175,8 +171,8 @@ use PhpFp\Either\Constructor\{Left, Right};
 $f = function ($x) { return $x - 5; };
 $id = function ($x) { return $x; };
 
-assert((new Right(8))->map($f)->either($id, $id) === 3);
-assert((new Left(8))->map($f)->either($id, $id) === 8);
+assert(Right::of(8)->map($f)->either($id, $id) === 3);
+assert(Left::of(8)->map($f)->either($id, $id) === 8);
 ```
 
 ### `either :: Either e a | (e -> b) -> (a -> b) -> b`
@@ -191,8 +187,8 @@ use PhpFp\Either\Constructor\{Left, Right};
 $left = function ($x) { return (int) $x; };
 $right = function ($x) { $x; };
 
-assert((new Left('7'))->either($left, $right) === 7);
-assert((new Right(2))->either($left, $right) === 2);
+assert(Left::of('7')->either($left, $right) === 7);
+assert(Right::of(2)->either($left, $right) === 2);
 ```
 
 ## Contributing

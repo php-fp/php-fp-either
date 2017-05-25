@@ -38,8 +38,8 @@ class MapTest extends \PHPUnit_Framework_TestCase
             return $x;
         };
 
-        $a = new Right(5);
-        $b = new Left(4);
+        $a = Right::of(5);
+        $b = Left::of(4);
 
         $this->assertEquals(
             $a->map($addTwo)->either($id, $id),

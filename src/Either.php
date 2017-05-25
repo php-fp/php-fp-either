@@ -2,8 +2,6 @@
 
 namespace PhpFp\Either;
 
-use PhpFp\Either\Constructor\{Left, Right};
-
 /**
  * An OO-looking implementation of Either in PHP.
  */
@@ -14,22 +12,6 @@ abstract class Either
      * @var mixed
      */
     protected $value = null;
-
-    /**
-     * Applicative constructor for Either.
-     * @param mixed $x The value to be wrapped.
-     * @return A new Right-constructed type.
-     */
-    public static function of($x) : Either
-    {
-        return new Right($x);
-    }
-
-    /**
-     * Standard constructor for an Either instance.
-     * @param mixed $value The value to wrap.
-     */
-    abstract public function __construct($value);
 
     /**
      * Apply a wrapped parameter to this wrapped function.

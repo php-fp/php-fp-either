@@ -10,12 +10,13 @@ use PhpFp\Either\Either;
 class Left extends Either
 {
     /**
-     * Construct a new Left instance with a value.
-     * @param mixed $value The value to be wrapped.
+     * Applicative constructor for Left.
+     * @param mixed $x The value to be wrapped.
+     * @return Either Left
      */
-    public function __construct($value)
+    public static function of($x): Left
     {
-        return $this->value = $value;
+        return new static($x);
     }
 
     /**
@@ -68,5 +69,14 @@ class Left extends Either
     public function either(callable $f, callable $_)
     {
         return $f($this->value);
+    }
+
+    /**
+     * Construct a new Left instance with a value.
+     * @param mixed $value The value to be wrapped.
+     */
+    final protected function __construct($value)
+    {
+        return $this->value = $value;
     }
 }

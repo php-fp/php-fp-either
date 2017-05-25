@@ -38,8 +38,8 @@ class EitherTest extends \PHPUnit_Framework_TestCase
             return $x - 1;
         };
 
-        $a = new Right(2);
-        $b = new Left(2);
+        $a = Right::of(2);
+        $b = Left::of(2);
 
         $this->assertEquals(
             $a->either($addOne, $takeOne),

@@ -36,15 +36,30 @@ class ConstructorTest extends \PHPUnit_Framework_TestCase
         };
 
         $this->assertEquals(
-            (new Right(2))->either($id, $id),
+            (Right::of(2))->either($id, $id),
             2,
             'Constructs a Right.'
         );
 
         $this->assertEquals(
-            (new Left(2))->either($id, $id),
+            (Left::of(2))->either($id, $id),
             2,
             'Constructs a Left.'
+        );
+    }
+
+    public function testStaticConstructor()
+    {
+        $this->assertInstanceOf(
+            Right::class,
+            Right::of('a'),
+            'Statically constructs a Right.'
+        );
+
+        $this->assertInstanceOf(
+            Left::class,
+            Left::of('b'),
+            'Statically constructs a Left.'
         );
     }
 }

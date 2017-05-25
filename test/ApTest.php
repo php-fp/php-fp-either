@@ -28,7 +28,7 @@ class ApTest extends \PHPUnit_Framework_TestCase
 
     public function testAp()
     {
-        $addTwo = Either::of(
+        $addTwo = Right::of(
             function ($x)
             {
                 return $x + 2;
@@ -40,8 +40,8 @@ class ApTest extends \PHPUnit_Framework_TestCase
             return $x;
         };
 
-        $a = Either::of(5);
-        $b = new Left(4);
+        $a = Right::of(5);
+        $b = Left::of(4);
 
         $this->assertEquals(
             $addTwo
