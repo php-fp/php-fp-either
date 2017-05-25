@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class MapTest extends \PHPUnit_Framework_TestCase
 {
     public function testMapParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Left::map'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Left::map'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -17,7 +17,7 @@ class MapTest extends \PHPUnit_Framework_TestCase
             'Left::map takes one parameter.'
         );
 
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Right::map'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Right::map'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,

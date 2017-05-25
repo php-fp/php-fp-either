@@ -2,7 +2,7 @@
 
 namespace PhpFp\Either\Test;
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 use function PhpFp\Either\try_catch;
 

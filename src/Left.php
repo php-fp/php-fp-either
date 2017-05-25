@@ -1,23 +1,26 @@
 <?php
 
-namespace PhpFp\Either\Constructor;
-
-use PhpFp\Either\Either;
+namespace PhpFp\Either;
 
 /**
  * An OO-looking implementation of the Left constructor.
  */
-class Left extends Either
+class Left implements Either
 {
     /**
      * Applicative constructor for Left.
      * @param mixed $x The value to be wrapped.
      * @return Either Left
      */
-    public static function of($x): Left
+    public static function of($x) : Either
     {
         return new static($x);
     }
+
+    /**
+     * @var mixed The inner value of instance.
+     */
+    protected $value;
 
     /**
      * Do nothing; return the same value.

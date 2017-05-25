@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace PhpFp\Either;
 
-use PhpFp\Either\Constructor\{Left, Right};
-
 /**
  * Capture an exception-throwing function in an Either.
  * @param callable $f The exception-throwing function.

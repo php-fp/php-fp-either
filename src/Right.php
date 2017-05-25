@@ -1,23 +1,26 @@
 <?php
 
-namespace PhpFp\Either\Constructor;
-
-use PhpFp\Either\Either;
+namespace PhpFp\Either;
 
 /**
  * An OO-looking implementation of the Right constructor.
  */
-class Right extends Either
+class Right implements Either
 {
     /**
      * Applicative constructor for Right.
      * @param mixed $x The value to be wrapped.
      * @return Either Right
      */
-    public static function of($x): Right
+    public static function of($x) : Either
     {
         return new static($x);
     }
+
+    /**
+     * @var mixed The inner value of instance.
+     */
+    protected $value;
 
     /**
      * Apply a wrapped paramater to this wrapped function.

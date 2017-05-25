@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class BimapTest extends \PHPUnit_Framework_TestCase
 {
     public function testBimapParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Left::bimap'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Left::bimap'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -17,7 +17,7 @@ class BimapTest extends \PHPUnit_Framework_TestCase
             'Left::bimap takes two parameters.'
         );
 
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Right::bimap'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Right::bimap'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,

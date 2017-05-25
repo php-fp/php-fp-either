@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class ConstructorTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructorParameterCount()
     {
-        $count = (new \ReflectionClass('PhpFp\Either\Constructor\Left'))
+        $count = (new \ReflectionClass('PhpFp\Either\Left'))
             ->getConstructor()->getNumberOfParameters();
 
         $this->assertEquals(
@@ -18,7 +18,7 @@ class ConstructorTest extends \PHPUnit_Framework_TestCase
             'Left constructor takes one parameter.'
         );
 
-        $count = (new \ReflectionClass('PhpFp\Either\Constructor\Right'))
+        $count = (new \ReflectionClass('PhpFp\Either\Right'))
             ->getConstructor()->getNumberOfParameters();
 
         $this->assertEquals(

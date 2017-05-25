@@ -11,7 +11,7 @@ This means that, typically, your left branch will hold the 'exception', and the 
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $login = function ($username, $password)
 {
@@ -104,7 +104,7 @@ Apply an Either-wrapped argument to an Either-wrapped function, where a `Left` f
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $id = function ($x) { return $x; };
 
@@ -129,7 +129,7 @@ Sometimes, it can be useful to define computations to be performed on the `Left`
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $addOne = function ($x) { return $x + 1; };
 $subOne = function ($x) { return $x - 1; };
@@ -146,7 +146,7 @@ The standard monadic binding function (Haskell's `>>=`). This is for mapping wit
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $double = function ($x)
 {
@@ -166,7 +166,7 @@ This is the standard functor map, which transforms the inner value. As with the 
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $f = function ($x) { return $x - 5; };
 $id = function ($x) { return $x; };
@@ -182,7 +182,7 @@ This is the function that should be used to get the value _out_ of the `Either` 
 ```php
 <?php
 
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 $left = function ($x) { return (int) $x; };
 $right = function ($x) { $x; };

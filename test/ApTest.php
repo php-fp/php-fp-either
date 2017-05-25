@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class ApTest extends \PHPUnit_Framework_TestCase
 {
     public function testApParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Left::ap'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Left::ap'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -17,7 +17,7 @@ class ApTest extends \PHPUnit_Framework_TestCase
             'Left::ap takes one parameter.'
         );
 
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Right::ap'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Right::ap'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,

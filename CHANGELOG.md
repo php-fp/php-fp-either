@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+- `Either` has been made into an interface
 - `Either::of` has been replaced by `Left::of` and `Right::of` constructors
 - `Either::tryCatch` has been replaced by a `try_catch` function
 
