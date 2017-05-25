@@ -2,19 +2,20 @@
 
 namespace PhpFp\Either\Test;
 
-use PhpFp\Either\Either;
 use PhpFp\Either\Constructor\{Left, Right};
+
+use function PhpFp\Either\try_catch;
 
 class TryCatchTest extends \PHPUnit_Framework_TestCase
 {
     public function testTryCatchParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Either::tryCatch'))
+        $count = (new \ReflectionFunction('PhpFp\Either\try_catch'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
             1,
-            'tryCatch takes one parameter.'
+            'try_catch takes one parameter.'
         );
     }
 
@@ -33,15 +34,15 @@ class TryCatchTest extends \PHPUnit_Framework_TestCase
         $id = function ($x) { return $x; };
 
         $this->assertEquals(
-            Either::tryCatch($f(false))->either($id, $id),
+            try_catch($f(false))->either($id, $id),
             'No exception',
-            'TryCatches a Right.'
+            'try_catch produces a Right.'
         );
 
         $this->assertInstanceOf(
             'Exception',
-            Either::tryCatch($f(true))->either($id, $id),
-            'TryCatches a Left.'
+            try_catch($f(true))->either($id, $id),
+            'try_catch produces a Left.'
         );
     }
 }

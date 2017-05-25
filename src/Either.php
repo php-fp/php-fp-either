@@ -26,20 +26,6 @@ abstract class Either
     }
 
     /**
-     * Capture an exception-throwing function in an Either.
-     * @param callable $f The exception-throwing function.
-     * @return Either Right (with success), or Left (with exception).
-     */
-    public static function tryCatch(callable $f) : Either
-    {
-        try {
-            return new Right($f());
-        } catch (\Exception $e) {
-            return new Left($e);
-        }
-    }
-
-    /**
      * Standard constructor for an Either instance.
      * @param mixed $value The value to wrap.
      */

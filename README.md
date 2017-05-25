@@ -79,22 +79,22 @@ $id = function ($x) { return $x; };
 assert(Either::of('test')->either($id, $id) == 'test');
 ```
 
-### `tryCatch :: (-> a) -> Either e a`
+### `try_catch :: (-> a) -> Either e a`
 
 Sometimes, you will have a piece of exception-throwing code that you wish to wrap in an `Either`, and this function can help. If an exception occurs, it will be wrapped and returned in a `Left`. Otherwise, the returned value will be wrapped in a `Right`:
 
 ```php
 <?php
 
-use PhpFp\Either\Either;
+use function PhpFp\Either\try_catch;
 
 $id = function ($x) { return $x; };
 
 $f = function () { throw new \Exception; };
 $g = function () { return 'hello'; };
 
-assert(Either::tryCatch($f)->either($id, $id) instanceof \Exception);
-assert(Either::tryCatch($g)->either($id, $id) === 'hello');
+assert(try_catch($f)->either($id, $id) instanceof \Exception);
+assert(try_catch($g)->either($id, $id) === 'hello');
 ```
 
 ### `__construct :: a -> Either e a`
