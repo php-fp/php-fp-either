@@ -3,6 +3,10 @@
         {
             "name": "Tom",
             "email": "tomjharding@live.co.uk"
+        },
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com"
         }
     ],
     "autoload": {
