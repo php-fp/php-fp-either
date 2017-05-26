@@ -21,13 +21,13 @@
     "license": "MIT",
     "name": "php-fp/php-fp-either",
     "scripts": {
-        "test": "vendor/bin/phpunit test"
+        "test": "phpunit test"
     },
     "time": "2016-04-19",
     "require": {
         "php": ">=7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.3"
+        "phpunit/phpunit": "^5.7"
     }
 }
