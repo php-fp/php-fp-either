@@ -41,7 +41,7 @@ class ApTest extends \PHPUnit_Framework_TestCase
         };
 
         $a = Either::of(5);
-        $b = new Left(4);
+        $b = Either::left(4);
 
         $this->assertEquals(
             $addTwo
@@ -57,7 +57,7 @@ class ApTest extends \PHPUnit_Framework_TestCase
             'Applies to a Left.'
         );
 
-        $subOne = new Left(
+        $subOne = Either::left(
             function ($x) {
                 return $x - 1;
             }

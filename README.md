@@ -79,6 +79,38 @@ $id = function ($x) { return $x; };
 assert(Either::of('test')->either($id, $id) == 'test');
 ```
 
+### `left :: a -> Left e a`
+
+Standard constructor for `Left` instances.
+
+```php
+<?php
+
+use PhpFp\Either\Either;
+use PhpFp\Either\Constructor\Left;
+
+$either = Either::left('test');
+
+assert($either instanceof Either);
+assert($either instanceof Left);
+```
+
+### `right :: a -> Right e a`
+
+Standard constructor for `Right` instances. Typically you should call `Either::of` instead.
+
+```php
+<?php
+
+use PhpFp\Either\Either;
+use PhpFp\Either\Constructor\Right;
+
+$either = Either::right('test');
+
+assert($either instanceof Either);
+assert($either instanceof Right);
+```
+
 ### `tryCatch :: (-> a) -> Either e a`
 
 Sometimes, you will have a piece of exception-throwing code that you wish to wrap in an `Either`, and this function can help. If an exception occurs, it will be wrapped and returned in a `Left`. Otherwise, the returned value will be wrapped in a `Right`:
@@ -96,10 +128,6 @@ $g = function () { return 'hello'; };
 assert(Either::tryCatch($f)->either($id, $id) instanceof \Exception);
 assert(Either::tryCatch($g)->either($id, $id) === 'hello');
 ```
-
-### `__construct :: a -> Either e a`
-
-Standard constructor for the `Either` instances. `PhpFp\Either\Either` has an abstract constructor, so you will need to call either `PhpFp\Either\Constructor\Left::__construct` or the `Right` equivalent.
 
 ### `ap :: Either e (a -> b) | Either e a -> Either e b`
 
@@ -139,8 +167,8 @@ $addOne = function ($x) { return $x + 1; };
 $subOne = function ($x) { return $x - 1; };
 $id = function ($x) { return $x; };
 
-assert ((new Right(2))->bimap($addOne, $subOne)->either($id, $id) === 1);
-assert ((new Left(2))->bimap($addOne, $subOne)->either($id, $id) === 3);
+assert (Either::right(2)->bimap($addOne, $subOne)->either($id, $id) === 1);
+assert (Either::left(2)->bimap($addOne, $subOne)->either($id, $id) === 3);
 ```
 
 ### `chain :: Either e a | (a -> Either f b) -> Either f b`
@@ -159,8 +187,8 @@ $f = function ($x)
 
 $id = function ($x) { return $x; };
 
-assert((new Right(8))->chain($f)->either($id, $id) === 16);
-assert((new Left(8))->chain($f)->either($id, $id) === 8);
+assert(Either::right(8)->chain($f)->either($id, $id) === 16);
+assert(Either::left(8)->chain($f)->either($id, $id) === 8);
 ```
 
 ### `map :: Either e a | (a -> b) -> Either e b`
@@ -175,8 +203,8 @@ use PhpFp\Either\Constructor\{Left, Right};
 $f = function ($x) { return $x - 5; };
 $id = function ($x) { return $x; };
 
-assert((new Right(8))->map($f)->either($id, $id) === 3);
-assert((new Left(8))->map($f)->either($id, $id) === 8);
+assert(Either::right(8)->map($f)->either($id, $id) === 3);
+assert(Either::left(8)->map($f)->either($id, $id) === 8);
 ```
 
 ### `either :: Either e a | (e -> b) -> (a -> b) -> b`
@@ -191,8 +219,8 @@ use PhpFp\Either\Constructor\{Left, Right};
 $left = function ($x) { return (int) $x; };
 $right = function ($x) { $x; };
 
-assert((new Left('7'))->either($left, $right) === 7);
-assert((new Right(2))->either($left, $right) === 2);
+assert(Either::left('7')->either($left, $right) === 7);
+assert(Either::right(2)->either($left, $right) === 2);
 ```
 
 ## Contributing

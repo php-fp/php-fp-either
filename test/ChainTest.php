@@ -39,7 +39,7 @@ class ChainTest extends \PHPUnit_Framework_TestCase
         };
 
         $a = Either::of(5);
-        $b = new Left(4);
+        $b = Either::left(4);
 
         $this->assertEquals(
             $a->chain($addTwo)->either($id, $id),
