@@ -56,5 +56,23 @@ class ApTest extends \PHPUnit_Framework_TestCase
             4,
             'Applies to a Left.'
         );
+
+        $subOne = new Left(
+            function ($x) {
+                return $x - 1;
+            }
+        );
+
+        $this->assertEquals(
+            $subOne->ap($a)->either($id, $id),
+            5,
+            'Does not apply to a Right.'
+        );
+
+        $this->assertEquals(
+            $subOne->ap($b)->either($id, $id),
+            4,
+            'Does not apply to a Left.'
+        );
     }
 }
