@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class ChainTest extends \PHPUnit_Framework_TestCase
 {
     public function testChainParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Left::chain'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Left::chain'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -17,7 +17,7 @@ class ChainTest extends \PHPUnit_Framework_TestCase
             'Left::chain takes one parameter.'
         );
 
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Right::chain'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Right::chain'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -30,7 +30,7 @@ class ChainTest extends \PHPUnit_Framework_TestCase
     {
         $addTwo = function ($x)
         {
-            return Either::of($x + 2);
+            return Right::of($x + 2);
         };
 
         $id = function ($x)
@@ -38,8 +38,8 @@ class ChainTest extends \PHPUnit_Framework_TestCase
             return $x;
         };
 
-        $a = Either::of(5);
-        $b = new Left(4);
+        $a = Right::of(5);
+        $b = Left::of(4);
 
         $this->assertEquals(
             $a->chain($addTwo)->either($id, $id),

@@ -3,9 +3,16 @@
         {
             "name": "Tom",
             "email": "tomjharding@live.co.uk"
+        },
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com"
         }
     ],
     "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
         "psr-4": {
             "PhpFp\\Either\\": "src/"
         }

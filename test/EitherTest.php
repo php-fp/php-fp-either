@@ -3,13 +3,13 @@
 namespace PhpFp\Either\Test;
 
 use PhpFp\Either\Either;
-use PhpFp\Either\Constructor\{Left, Right};
+use PhpFp\Either\{Left, Right};
 
 class EitherTest extends \PHPUnit_Framework_TestCase
 {
     public function testEitherParameterCount()
     {
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Left::either'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Left::either'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -17,7 +17,7 @@ class EitherTest extends \PHPUnit_Framework_TestCase
             'Left::either takes two parameters.'
         );
 
-        $count = (new \ReflectionMethod('PhpFp\Either\Constructor\Right::either'))
+        $count = (new \ReflectionMethod('PhpFp\Either\Right::either'))
             ->getNumberOfParameters();
 
         $this->assertEquals($count,
@@ -38,8 +38,8 @@ class EitherTest extends \PHPUnit_Framework_TestCase
             return $x - 1;
         };
 
-        $a = new Right(2);
-        $b = new Left(2);
+        $a = Right::of(2);
+        $b = Left::of(2);
 
         $this->assertEquals(
             $a->either($addOne, $takeOne),
