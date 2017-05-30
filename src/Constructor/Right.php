@@ -7,17 +7,8 @@ use PhpFp\Either\Either;
 /**
  * An OO-looking implementation of the Right constructor.
  */
-class Right extends Either
+final class Right extends Either
 {
-    /**
-     * Construct a new Right instance with a value.
-     * @param mixed $value The value to be wrapped.
-     */
-    public function __construct($value)
-    {
-        return $this->value = $value;
-    }
-
     /**
      * Apply a wrapped paramater to this wrapped function.
      * @param Either $that The parameter to apply.
@@ -41,7 +32,7 @@ class Right extends Either
      */
     public function bimap(callable $_, callable $g) : Either
     {
-        return new self($g($this->value));
+        return Either::right($g($this->value));
     }
 
     /**
@@ -61,7 +52,7 @@ class Right extends Either
      */
     public function map(callable $f) : Either
     {
-        return new self($f($this->value));
+        return Either::right($f($this->value));
     }
 
     /**
